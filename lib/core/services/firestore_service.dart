@@ -54,7 +54,7 @@ class FirestoreService implements DataBaseServiceRepo {
     try {
       final querySnapshot = await _firestore.collection(collectionPath).get();
       return querySnapshot.docs
-          .map((doc) => {'id': doc.id, ...doc.data() as Map<String, dynamic>})
+          .map((doc) => {'id': doc.id, ...doc.data()})
           .toList();
     } catch (e) {
       log('Exception in getAllDocuments: $e');
@@ -114,7 +114,7 @@ class FirestoreService implements DataBaseServiceRepo {
           .where(field, isEqualTo: value)
           .get();
       return querySnapshot.docs
-          .map((doc) => {'id': doc.id, ...doc.data() as Map<String, dynamic>})
+          .map((doc) => {'id': doc.id, ...doc.data()})
           .toList();
     } catch (e) {
       log('Exception in searchDocuments: $e');
@@ -156,7 +156,7 @@ class FirestoreService implements DataBaseServiceRepo {
           .snapshots()
           .map((querySnapshot) {
         return querySnapshot.docs
-            .map((doc) => {'id': doc.id, ...doc.data() as Map<String, dynamic>})
+            .map((doc) => {'id': doc.id, ...doc.data()})
             .toList();
       });
     } catch (e) {
