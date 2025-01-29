@@ -14,6 +14,10 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+
+#Api
+  dio: ^5.8.0
+
 #Core
   connectivity_plus: ^5.0.2
   flutter_dotenv: ^5.2.1
@@ -37,6 +41,7 @@ dependencies:
 
 #Bloc
   flutter_bloc: ^8.1.6
+  flutter_riverpod: ^2.6.1
 #shared preferences
   shared_preferences: ^2.3.2
 #freezed
