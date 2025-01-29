@@ -11,13 +11,13 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: BlocProvider(
-          create: (context) => ProductsCubit(
-            getIt.get<ProductsRepo>(),
-          ),
-          child: HomeViewBody(),
+      backgroundColor: Color(0xffF7F7F9),
+      extendBody: true,
+      body: BlocProvider(
+        create: (context) => ProductsCubit(
+          getIt.get<ProductsRepo>(),
         ),
+        child: HomeViewBody(),
       ),
     );
   }
