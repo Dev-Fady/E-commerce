@@ -64,12 +64,12 @@ class AppTextStyles {
   static final TextStyle bodyBasaBold16 = TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 16.sp,
-    color: Colors.white,
+    // color: Colors.white,
   );
   static final TextStyle bodyBasaSemiBold16 = TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 16.sp,
-    color: Colors.white,
+    // color: Colors.white,
   );
 
   static final TextStyle bodySmallBold13 = TextStyle(
