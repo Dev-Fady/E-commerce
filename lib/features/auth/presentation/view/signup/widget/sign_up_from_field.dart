@@ -1,4 +1,81 @@
-import 'package:e_commerce/core/helper_functions/build_error_message.dart';
+import 'package:e_commerce/features/auth/presentation/view/signup/widget/field_sigin_up.dart';
+import 'package:e_commerce/features/auth/presentation/view/signup/widget/sign_up_button.dart';
+import 'package:e_commerce/features/auth/presentation/view/signup/widget/terms_and_conitions.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class SignUpFromField extends ConsumerStatefulWidget {
+  const SignUpFromField({super.key});
+
+  @override
+  ConsumerState<SignUpFromField> createState() => _SignUpFromFieldState();
+}
+
+class _SignUpFromFieldState extends ConsumerState<SignUpFromField> {
+  bool isObscureText = true;
+  bool isTermsAccepted = false;
+
+  final _formKey = GlobalKey<FormState>();
+
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      autovalidateMode: autovalidateMode,
+      child: Column(
+        children: [
+          FieldName(nameController: nameController),
+          SizedBox(height: 16.h),
+          FieldEmail(emailController: emailController),
+          SizedBox(height: 16.h),
+          FieldPassword(
+            passwordController: passwordController,
+            isObscureText: isObscureText,
+            onObscureTextChanged: (value) {
+              setState(() {
+                isObscureText = value;
+              });
+            },
+          ),
+          SizedBox(height: 16.h),
+          TermsAndConitions(
+            isTermsAccepted: isTermsAccepted,
+            onChecked: (value) {
+              setState(() {
+                isTermsAccepted = value;
+              });
+            },
+          ),
+          SizedBox(height: 16.h),
+          SignUpButton(
+            isTermsAccepted: isTermsAccepted,
+            nameController: nameController,
+            emailController: emailController,
+            passwordController: passwordController,
+            formKey: _formKey,
+            autovalidateMode: autovalidateMode,
+            updateAutovalidateMode: (mode) {
+              setState(() {
+                autovalidateMode = mode;
+              });
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+//~ using this firebase and cubit
+
+/*          import 'package:e_commerce/core/helper_functions/build_error_message.dart';
 import 'package:e_commerce/core/theme/app_colors.dart';
 import 'package:e_commerce/core/theme/app_text_styles.dart';
 import 'package:e_commerce/core/widget/app_text_form_field.dart';
@@ -132,3 +209,4 @@ class _SignUpFromFieldState extends State<SignUpFromField> {
     );
   }
 }
+*/
