@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:e_commerce/core/helper_functions/logging_interceptor.dart';
-import 'package:e_commerce/core/services/api/api_comsumer.dart';
 import 'package:e_commerce/core/services/api/api_service.dart';
-import 'package:e_commerce/core/services/api/dio_consumer.dart';
 import 'package:e_commerce/core/services/firebase_auth_service.dart';
 import 'package:e_commerce/core/services/firestore_service.dart';
 import 'package:e_commerce/desh_board/core/repo/image_repo/image_repo.dart';
@@ -45,8 +43,6 @@ void setupGetit() {
     firebaseAuthService: getIt<FirebaseAuthService>(),
     firestoreService: getIt<FirestoreService>(),
   ));
-
-  getIt.registerSingleton<ApiConsumer>(DioConsumer(dio: Dio()));
 
   final dio = Dio();
 
