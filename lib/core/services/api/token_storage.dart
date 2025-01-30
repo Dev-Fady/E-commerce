@@ -1,20 +1,17 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:e_commerce/core/cache/cache_helper.dart';
 
 class TokenStorage {
   static const String _tokenKey = "auth_token";
 
   Future<void> saveToken(String token) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_tokenKey, token);
+    await CacheHelper().saveData(key: _tokenKey, value: token);
   }
 
   Future<String?> getToken() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_tokenKey);
+    return await CacheHelper().getData(key: _tokenKey);
   }
 
   Future<void> deleteToken() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_tokenKey);
+    await CacheHelper().removeData(key: _tokenKey);
   }
 }
