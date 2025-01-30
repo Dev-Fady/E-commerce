@@ -1,4 +1,4 @@
-import 'package:e_commerce/features/auth/presentation/view/signup/widget/sign_up_view_bloc_consumer.dart';
+import 'package:e_commerce/features/auth/presentation/view/signup/widget/sign_up_view_body.dart';
 import 'package:e_commerce/features/auth/presentation/view/widget/custom_app_bar_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +10,8 @@ class SignUpView extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBarAuth(title: 'حساب جديد'),
       body: SafeArea(
-        child: SignUpViewBlocConsumer(),
+        // child: SignUpViewBlocConsumer(),
+        child: SignUpViewBody(),
       ),
     );
   }
