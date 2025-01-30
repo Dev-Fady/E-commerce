@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:e_commerce/core/helper_functions/logging_interceptor.dart';
 import 'package:e_commerce/core/services/api/api_comsumer.dart';
+import 'package:e_commerce/core/services/api/api_service.dart';
 import 'package:e_commerce/core/services/api/dio_consumer.dart';
 import 'package:e_commerce/core/services/firebase_auth_service.dart';
 import 'package:e_commerce/core/services/firestore_service.dart';
@@ -46,4 +48,10 @@ void setupGetit() {
 
   getIt.registerSingleton<ApiConsumer>(DioConsumer(dio: Dio()));
 
+  final dio = Dio();
+
+  // إعداد الـ Logging Interceptor
+  loggingInterceptor(dio);
+
+  GetIt.I.registerSingleton<ApiService>(ApiService(dio));
 }
