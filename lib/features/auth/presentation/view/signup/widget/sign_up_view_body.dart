@@ -3,12 +3,7 @@ import 'package:e_commerce/features/auth/presentation/view/signup/widget/sign_up
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SignUpViewBody extends StatefulWidget {
-  @override
-  State<SignUpViewBody> createState() => _SignUpViewBodyState();
-}
-
-class _SignUpViewBodyState extends State<SignUpViewBody> {
+class SignUpViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
