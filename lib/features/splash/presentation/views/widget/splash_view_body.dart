@@ -2,7 +2,7 @@
 
 import 'package:e_commerce/core/constants/constanst.dart';
 import 'package:e_commerce/core/helper_functions/router/router_name.dart';
-import 'package:e_commerce/core/services/cache_helper.dart';
+import 'package:e_commerce/core/cache/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';

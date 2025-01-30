@@ -1,6 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_commerce/core/helper_functions/router/router_name.dart';
-import 'package:e_commerce/core/services/cache_helper.dart';
+import 'package:e_commerce/core/cache/cache_helper.dart';
 import 'package:e_commerce/core/theme/app_colors.dart';
 import 'package:e_commerce/core/theme/app_text_styles.dart';
 import 'package:e_commerce/core/widget/cusstom_button.dart';
