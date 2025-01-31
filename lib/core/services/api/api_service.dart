@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:e_commerce/features/auth/data/model/login_request.dart';
 import 'package:e_commerce/features/auth/data/model/user_model_api.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -13,4 +14,9 @@ abstract class ApiService {
 
   @POST("register")
   Future<dynamic> register(@Body() UserModelApi userModelApi);
+
+  @POST("login")
+  Future<dynamic> login(
+    @Body() LoginRequest request,
+  );
 }
