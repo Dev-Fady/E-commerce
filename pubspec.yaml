@@ -103,6 +103,7 @@ flutter:
     - assets/images/vuesax/outline/products.svg
     - assets/images/vuesax/outline/shopping-cart.svg
     - assets/images/vuesax/outline/user.svg
+    - assets/images/customer/avatar.png
   # example:
   fonts:
     - family: 'Cairo'

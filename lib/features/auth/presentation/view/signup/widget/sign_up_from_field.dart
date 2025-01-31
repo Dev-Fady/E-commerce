@@ -1,4 +1,5 @@
 import 'package:e_commerce/features/auth/presentation/view/signup/widget/field_sigin_up.dart';
+import 'package:e_commerce/features/auth/presentation/view/signup/widget/pick_image_widget.dart';
 import 'package:e_commerce/features/auth/presentation/view/signup/widget/sign_up_button.dart';
 import 'package:e_commerce/features/auth/presentation/view/signup/widget/terms_and_conitions.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class _SignUpFromFieldState extends ConsumerState<SignUpFromField> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
@@ -30,11 +32,12 @@ class _SignUpFromFieldState extends ConsumerState<SignUpFromField> {
       key: _formKey,
       autovalidateMode: autovalidateMode,
       child: Column(
+        spacing: 16.h,
         children: [
+          PickImageWidget(),
           FieldName(nameController: nameController),
-          SizedBox(height: 16.h),
           FieldEmail(emailController: emailController),
-          SizedBox(height: 16.h),
+          FieldPhone(phoneController: phoneController),
           FieldPassword(
             passwordController: passwordController,
             isObscureText: isObscureText,
@@ -44,7 +47,6 @@ class _SignUpFromFieldState extends ConsumerState<SignUpFromField> {
               });
             },
           ),
-          SizedBox(height: 16.h),
           TermsAndConitions(
             isTermsAccepted: isTermsAccepted,
             onChecked: (value) {
@@ -53,12 +55,12 @@ class _SignUpFromFieldState extends ConsumerState<SignUpFromField> {
               });
             },
           ),
-          SizedBox(height: 16.h),
           SignUpButton(
             isTermsAccepted: isTermsAccepted,
             nameController: nameController,
             emailController: emailController,
             passwordController: passwordController,
+            phoneController: phoneController,
             formKey: _formKey,
             autovalidateMode: autovalidateMode,
             updateAutovalidateMode: (mode) {

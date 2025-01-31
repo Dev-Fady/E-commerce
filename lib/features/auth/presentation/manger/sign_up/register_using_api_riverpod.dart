@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/core/DI/dependency_injection.dart';
@@ -30,3 +31,5 @@ final registerUsingApiProvider = FutureProvider.family<
 final registerUsingApiRepoProvider = Provider<RegisterUsingApiRepo>((ref) {
   return RegisterUsingApiRepoImpl(apiService: getIt<ApiService>());
 });
+
+final profilePicProvider = StateProvider<File?>((ref) => null);

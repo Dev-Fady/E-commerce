@@ -19,12 +19,14 @@ class SignUpButton extends ConsumerStatefulWidget {
     required this.formKey,
     required this.autovalidateMode,
     required this.updateAutovalidateMode,
+    required this.phoneController,
   });
 
   final bool isTermsAccepted;
   final TextEditingController nameController;
   final TextEditingController emailController;
   final TextEditingController passwordController;
+  final TextEditingController phoneController;
   final GlobalKey<FormState> formKey;
   final AutovalidateMode autovalidateMode;
   final Function(AutovalidateMode) updateAutovalidateMode;
@@ -47,12 +49,13 @@ class _SignUpButtonState extends ConsumerState<SignUpButton> {
                 setState(() {
                   isLoading = true;
                 });
+                final profilepic = ref.read(profilePicProvider);
                 final userModel = UserModelApi(
                   name: widget.nameController.text,
                   email: widget.emailController.text,
                   password: widget.passwordController.text,
-                  image: '',
-                  phone: '09978784503',
+                  image: profilepic?.path ?? '',
+                  phone: widget.phoneController.text,
                 );
 
                 final result =

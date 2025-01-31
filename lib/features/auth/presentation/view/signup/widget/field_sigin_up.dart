@@ -75,3 +75,23 @@ class FieldEmail extends StatelessWidget {
     );
   }
 }
+
+class FieldPhone extends StatelessWidget {
+  const FieldPhone({
+    super.key,
+    required this.phoneController,
+  });
+
+  final TextEditingController phoneController;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppTextFormField(
+      hintText: 'رقم الهاتف',
+      keyboardType: TextInputType.phone,
+      validator: (value) =>
+          value == null || value.isEmpty ? 'رجاء ادخال رقم الهاتف' : null,
+      controller: phoneController,
+    );
+  }
+}
