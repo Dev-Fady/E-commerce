@@ -1,6 +1,7 @@
 import 'package:e_commerce/core/theme/app_text_styles.dart';
 import 'package:e_commerce/features/home/presentation/view/home_view.dart';
 import 'package:e_commerce/features/main/presentation/widgets/custom_bottom_nav_bar.dart';
+import 'package:e_commerce/features/profile/presentation/view/perfile_view.dart';
 import 'package:flutter/material.dart';
 
 class MainView extends StatefulWidget {
@@ -19,7 +20,7 @@ class _MainViewState extends State<MainView> {
     Center(child: Text("🛍️ التسوق", style: AppTextStyles.bodyXSmallRegular11)),
     Center(
         child: Text("🔔 الإشعارات", style: AppTextStyles.bodyXSmallRegular11)),
-    Center(child: Text("👤 الحساب", style: AppTextStyles.bodyXSmallRegular11)),
+    PerfileView(),
   ];
 
   void _onItemTapped(int index) {
