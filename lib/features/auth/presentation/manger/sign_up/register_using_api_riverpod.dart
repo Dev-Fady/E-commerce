@@ -33,3 +33,4 @@ final registerUsingApiRepoProvider = Provider<RegisterUsingApiRepo>((ref) {
 });
 
 final profilePicProvider = StateProvider<File?>((ref) => null);
+final isLoadingProvider = StateProvider<bool>((ref) => false);

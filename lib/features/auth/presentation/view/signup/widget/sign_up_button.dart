@@ -36,53 +36,50 @@ class SignUpButton extends ConsumerStatefulWidget {
 }
 
 class _SignUpButtonState extends ConsumerState<SignUpButton> {
-  bool isLoading = false;
+  Future<void> registerUser() async {
+    if (widget.formKey.currentState!.validate()) {
+      ref.read(isLoadingProvider.notifier).state = true;
+
+      final profilePic = ref.read(profilePicProvider);
+
+      final userModel = UserModelApi(
+        name: widget.nameController.text,
+        email: widget.emailController.text,
+        password: widget.passwordController.text,
+        image: profilePic?.path ?? '',
+        phone: widget.phoneController.text,
+      );
+
+      final result = await ref.read(registerUsingApiProvider(userModel).future);
+
+      result.fold(
+        (failure) {
+          buildErrorBar(context, failure.toString());
+        },
+        (success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('تم التسجيل بنجاح')),
+          );
+          context.goNamed(RouterName.login);
+        },
+      );
+
+      ref.read(isLoadingProvider.notifier).state = false;
+    } else {
+      widget.updateAutovalidateMode(AutovalidateMode.always);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(isLoadingProvider);
+
     return CusstomButton(
       buttonText: isLoading ? 'جارٍ التسجيل...' : 'إنشاء حساب جديد',
       textStyle: AppTextStyles.bodyBasaBold16,
       onPressed: widget.isTermsAccepted
-          ? () async {
-              if (widget.formKey.currentState!.validate()) {
-                setState(() {
-                  isLoading = true;
-                });
-                final profilepic = ref.read(profilePicProvider);
-                final userModel = UserModelApi(
-                  name: widget.nameController.text,
-                  email: widget.emailController.text,
-                  password: widget.passwordController.text,
-                  image: profilepic?.path ?? '',
-                  phone: widget.phoneController.text,
-                );
-
-                final result =
-                    await ref.read(registerUsingApiProvider(userModel).future);
-
-                result.fold(
-                  (failure) {
-                    buildErrorBar(context, failure.toString());
-                  },
-                  (success) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('تم التسجيل بنجاح')),
-                    );
-                    context.goNamed(RouterName.login);
-                  },
-                );
-
-                setState(() {
-                  isLoading = false;
-                });
-              } else {
-                widget.updateAutovalidateMode(AutovalidateMode.always);
-              }
-            }
-          : () {
-              buildErrorBar(context, 'يجب أن تقبل الشروط والأحكام');
-            },
+          ? registerUser
+          : () => buildErrorBar(context, 'يجب أن تقبل الشروط والأحكام'),
       backgroundColor: widget.isTermsAccepted ? null : AppColors.grayscale300,
     );
   }
