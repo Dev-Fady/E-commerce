@@ -18,7 +18,9 @@ final registerUsingApiProvider = FutureProvider.family<
   final register = ref.watch(registerUsingApiRepoProvider);
   final result = await register.register(userModelApi);
   result.fold(
-    (failure) => null,
+    (failure) {
+      return Exception(failure.message);
+    },
     (registerEntity) {
       final token = registerEntity.token;
       TokenStorage().saveToken(token);
