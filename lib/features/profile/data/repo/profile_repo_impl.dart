@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce/core/errors/faliures.dart';
 import 'package:e_commerce/core/services/api/api_service.dart';
+import 'package:e_commerce/features/profile/data/model/logout_model.dart';
 import 'package:e_commerce/features/profile/data/model/profile_model.dart';
 import 'package:e_commerce/features/profile/domian/entites/profile_entity.dart';
 import 'package:e_commerce/features/profile/domian/repo/profile_rope.dart';
@@ -19,6 +20,21 @@ class ProfileRepoImpl extends ProfileRope {
       return Right(ProfileModel.fromJson(response));
     } catch (error) {
       log('Exception in getProfile: $error');
+      return Left(ServerFaliure(" حدث خطأ ما. الرجاء المحاولة مرة أخرى. "));
+    }
+  }
+
+  @override
+  Future<Either<Faliure, LogoutModel>> logout({required String token}) async {
+    try {
+      final response = await apiService.logout(
+        token,
+        {"fcm_token": "SomeFcmToken"},
+      );
+      log("Logout successful: $response");
+      return Right(LogoutModel.fromJson(response));
+    } on Exception catch (error) {
+      log('Exception in logout: $error');
       return Left(ServerFaliure(" حدث خطأ ما. الرجاء المحاولة مرة أخرى. "));
     }
   }
