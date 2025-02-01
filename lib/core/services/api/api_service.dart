@@ -22,4 +22,10 @@ abstract class ApiService {
 
   @GET("profile")
   Future<dynamic> getProfile(@Header("Authorization") String token);
+
+  @POST("logout")
+  Future<dynamic> logout(
+    @Header("Authorization") String token,
+    @Body() Map<String, dynamic> body,
+  );
 }
