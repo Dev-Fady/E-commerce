@@ -19,4 +19,7 @@ abstract class ApiService {
   Future<dynamic> login(
     @Body() LoginRequest request,
   );
+
+  @GET("profile")
+  Future<dynamic> getProfile(@Header("Authorization") String token);
 }
