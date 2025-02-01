@@ -1,4 +1,4 @@
-import 'package:e_commerce/features/home/domain/categories_details_entity.dart';
+import 'package:e_commerce/features/home/domain/entites/categories_details_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'categories_details_model.g.dart';
 

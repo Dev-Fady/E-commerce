@@ -7,8 +7,8 @@ import 'package:e_commerce/core/errors/faliures.dart';
 import 'package:e_commerce/core/services/api/api_service.dart';
 import 'package:e_commerce/features/home/data/model/categories_details_model.dart';
 import 'package:e_commerce/features/home/data/model/categories_model.dart';
-import 'package:e_commerce/features/home/domain/categories_details_entity.dart';
-import 'package:e_commerce/features/home/domain/categories_entity.dart';
+import 'package:e_commerce/features/home/domain/entites/categories_details_entity.dart';
+import 'package:e_commerce/features/home/domain/entites/categories_entity.dart';
 import 'package:e_commerce/features/home/domain/categories_repo.dart';
 
 class CategoriesRepoImpl extends CategoriesRepo {
