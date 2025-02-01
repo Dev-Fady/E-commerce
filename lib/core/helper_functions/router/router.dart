@@ -5,7 +5,9 @@ import 'package:e_commerce/features/auth/presentation/manger/sign_up/sign_up_cub
 import 'package:e_commerce/features/auth/presentation/view/login/login_view.dart';
 import 'package:e_commerce/features/auth/presentation/view/signup/sign_up_view.dart';
 import 'package:e_commerce/features/best_selling_fruits/presentation/view/bset_selling_view.dart';
+// import 'package:e_commerce/features/home/domain/categories_entity.dart';
 import 'package:e_commerce/features/home/presentation/view/home_view.dart';
+import 'package:e_commerce/features/home/presentation/view/productis_screen/categories_details_view.dart';
 import 'package:e_commerce/features/main/presentation/view/main_view.dart';
 import 'package:e_commerce/features/on_boarding/presentation/view/on_boarding_view.dart';
 import 'package:e_commerce/features/splash/presentation/views/splash_view.dart';
@@ -23,6 +25,13 @@ GoRouter createRouter(String initialLocation) {
         name: RouterName.splashScreen,
         builder: (context, state) => const SplashView(),
       ),
+      GoRoute(
+          path: RouterName.products_view,
+          name: RouterName.products_view,
+          builder: (context, state) {
+            // final category = state.extra as CategoriesEntity;
+            return CategoriesDetailsView();
+          }),
       GoRoute(
         path: RouterName.onBoarding,
         name: RouterName.onBoarding,
