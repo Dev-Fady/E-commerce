@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce/features/profile/domian/entites/profile_entity.dart';
 import 'package:e_commerce/features/profile/presentation/view/widget/logout_button.dart';
 import 'package:e_commerce/features/profile/presentation/view/widget/payment_button.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,7 +13,10 @@ import 'credit_and_points.dart';
 class BodyProfile extends StatelessWidget {
   const BodyProfile({
     super.key,
+    required this.profileEntity,
   });
+
+  final ProfileEntity profileEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -20,19 +25,32 @@ class BodyProfile extends StatelessWidget {
         children: [
           SizedBox(height: 20.h),
           // Profile Picture
-          const CircleAvatar(
-            radius: 50,
-            backgroundImage: AssetImage('assets/images/customer/avatar.png'),
+          CachedNetworkImage(
+            width: 163.w,
+            height: 110.h,
+            imageUrl:
+                'https://jjfnqrvkebweapmofqtn.supabase.co/storage/v1/object/public/${profileEntity.image}',
+            imageBuilder: (context, imageProvider) => Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: imageProvider,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            placeholder: (context, url) => CircularProgressIndicator(),
+            errorWidget: (context, url, error) =>
+                Image.asset('assets/images/customer/avatar.png'),
           ),
           SizedBox(height: 20.h),
           // Name
-          Text('محمد أحمد', style: AppTextStyles.heading23Bold),
+          Text(profileEntity.name, style: AppTextStyles.heading23Bold),
           SizedBox(height: 8.h),
           // Email
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              "fady46t45f@gmail.com",
+              profileEntity.email,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: CupertinoColors.systemGrey,
@@ -41,12 +59,13 @@ class BodyProfile extends StatelessWidget {
           ),
           SizedBox(height: 20.h),
           // Stats Row
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                CreditAndPoints(label: 'النقاط', value: '350'),
+                CreditAndPoints(
+                    label: 'النقاط', value: profileEntity.points.toString()),
                 CreditAndPoints(label: 'الرصيد', value: '50'),
               ],
             ),

@@ -1,8 +1,9 @@
 import 'package:e_commerce/core/theme/app_text_styles.dart';
+import 'package:e_commerce/features/profile/presentation/view/widget/rivedpod_work.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'widget/body_profile.dart';
+// import 'widget/body_profile.dart';
 
 class PerfileView extends StatelessWidget {
   const PerfileView({super.key});
@@ -19,7 +20,7 @@ class PerfileView extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: BodyProfile(),
+      body: RivedpodWork(),
     );
   }
 }
