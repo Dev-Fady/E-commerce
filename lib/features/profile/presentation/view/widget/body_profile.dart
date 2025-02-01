@@ -28,8 +28,7 @@ class BodyProfile extends StatelessWidget {
           CachedNetworkImage(
             width: 163.w,
             height: 110.h,
-            imageUrl:
-                'https://jjfnqrvkebweapmofqtn.supabase.co/storage/v1/object/public/${profileEntity.image}',
+            imageUrl: profileEntity.image,
             imageBuilder: (context, imageProvider) => Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
