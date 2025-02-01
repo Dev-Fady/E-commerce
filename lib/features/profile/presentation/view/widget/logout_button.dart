@@ -21,11 +21,12 @@ class LogoutButton extends ConsumerWidget {
       child: CupertinoButton(
         onPressed: () async {
           final logoutService =
-              await ref.watch(logoutProvider(TokenStorage().getToken()));
+              await ref.watch(logoutProvider(TokenStorage().getTokenLogin()));
           logoutService.when(
               data: (data) async {
                 await CacheHelper()
                     .saveData(key: kIsBoardingViewSeen, value: false);
+                TokenStorage().deleteTokenLogin();
                 context.goNamed(RouterName.login);
                 ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(content: Text(data.message)));

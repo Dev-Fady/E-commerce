@@ -11,7 +11,7 @@ class RivedpodWork extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final getProfileAsync =
-        ref.watch(getProfileProvider(TokenStorage().getToken()));
+        ref.watch(getProfileProvider(TokenStorage().getTokenLogin()));
     return getProfileAsync.when(
       data: (data) {
         return BodyProfile(profileEntity: data);
