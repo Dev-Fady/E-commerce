@@ -28,4 +28,11 @@ abstract class ApiService {
     @Header("Authorization") String token,
     @Body() Map<String, dynamic> body,
   );
+
+
+  @GET("categories/{id}")
+  Future<dynamic> categoryDetails(
+    @Header("Authorization") String token,
+    @Path("id") int categoryId,
+  );
 }
