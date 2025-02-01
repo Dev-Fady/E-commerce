@@ -9,7 +9,7 @@ import 'package:e_commerce/features/home/data/model/categories_details_model.dar
 import 'package:e_commerce/features/home/data/model/categories_model.dart';
 import 'package:e_commerce/features/home/domain/entites/categories_details_entity.dart';
 import 'package:e_commerce/features/home/domain/entites/categories_entity.dart';
-import 'package:e_commerce/features/home/domain/categories_repo.dart';
+import 'package:e_commerce/features/home/domain/repo/categories_repo.dart';
 
 class CategoriesRepoImpl extends CategoriesRepo {
   final ApiService apiService;
