@@ -4,8 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:remixicon/remixicon.dart';
 
+import '../../../../domain/entites/categories_details_entity.dart';
+
 class BestSeller extends StatelessWidget {
-  const BestSeller({super.key});
+  const BestSeller({super.key, required this.data});
+
+  final CategoriesDetailsEntity data;
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +36,7 @@ class BestSeller extends StatelessWidget {
               width: double.infinity,
               height: 120.h,
               fit: BoxFit.fill,
-              imageUrl:
-                  'https://student.valuxapps.com/storage/uploads/products/1615442168bVx52.item_XXL_36581132_143760083.jpeg',
+              imageUrl: data.image,
               placeholder: (context, url) =>
                   Center(child: CircularProgressIndicator()),
               errorWidget: (context, url, error) => Image.asset(
@@ -43,7 +46,9 @@ class BestSeller extends StatelessWidget {
           ),
           SizedBox(height: 8.h),
           Text(
-            'Headphones',
+            data.name,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: AppTextStyles.bodySmallSemiBold13,
           ),
           SizedBox(height: 4.h),
@@ -51,7 +56,7 @@ class BestSeller extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '\$ 4099',
+                '\$ ${data.price}',
                 style: AppTextStyles.bodyBasaBold16,
               ),
               IconButton(
