@@ -8,7 +8,8 @@ class CategoriesDetailsModel {
 
   CategoriesDetailsModel({required this.data});
 
-  factory CategoriesDetailsModel.fromJson(Map<String, dynamic> json) => _$CategoriesDetailsModelFromJson(json);
+  factory CategoriesDetailsModel.fromJson(Map<String, dynamic> json) =>
+      _$CategoriesDetailsModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$CategoriesDetailsModelToJson(this);
 }
@@ -46,22 +47,22 @@ class Data {
 
 @JsonSerializable()
 class DataPro extends CategoriesDetailsEntity {
-  final int id;
-  final int price;
-  final int oldPrice;
-  final int discount;
+  int? id;
+  int? price;
+  int? oldPrice;
+  int? discount;
   final String image;
   final String name;
   final String description;
   final List<String> images;
-  final bool inFavorites;
-  final bool inCart;
+   bool? inFavorites;
+   bool? inCart;
 
   DataPro({
-    required this.id,
-    required this.price,
-    required this.oldPrice,
-    required this.discount,
+    this.id,
+    this.price,
+    this.oldPrice,
+    this.discount,
     required this.image,
     required this.name,
     required this.description,
@@ -69,18 +70,19 @@ class DataPro extends CategoriesDetailsEntity {
     required this.inFavorites,
     required this.inCart,
   }) : super(
-          id: id,
-          price: price,
-          oldPrice: oldPrice,
-          discount: discount,
+          id: id ?? 0,
+          price: price ?? 0,
+          oldPrice: oldPrice ?? 0,
+          discount: discount ?? 0,
           image: image,
           name: name,
           description: description,
           images: images,
-          inFavorites: inFavorites,
-          inCart: inCart,
+          inFavorites: inFavorites??false,
+          inCart: inCart??false,
         );
 
-         factory DataPro.fromJson(Map<String, dynamic> json) => _$DataProFromJson(json);
-         Map<String, dynamic> toJson() => _$DataProToJson(this);
+  factory DataPro.fromJson(Map<String, dynamic> json) =>
+      _$DataProFromJson(json);
+  Map<String, dynamic> toJson() => _$DataProToJson(this);
 }
