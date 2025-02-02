@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'build_all_item.dart';
+// import 'build_all_item.dart';
 
 class ListAllItem extends StatelessWidget {
   const ListAllItem({
@@ -17,7 +17,7 @@ class ListAllItem extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.only(bottom: 8.w),
-            child: BuildAllItem(),
+            // child: BuildAllItem(),
           );
         },
       ),

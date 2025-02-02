@@ -18,7 +18,8 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(RouterName.products_view);
+        context.push(RouterName.categories_details_rivepod_work,
+            extra: cate.id);
       },
       child: Card(
         shape: RoundedRectangleBorder(
