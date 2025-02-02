@@ -18,7 +18,7 @@ class BestSellingGridView extends StatelessWidget {
       height: 240.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: data.length - 4,
+        itemCount: data.length ,
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.only(right: 12.w),
