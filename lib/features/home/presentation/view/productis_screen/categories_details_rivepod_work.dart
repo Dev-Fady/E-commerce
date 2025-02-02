@@ -1,16 +1,14 @@
-// import 'package:e_commerce/features/home/domain/entites/categories_entity.dart';
 import 'package:e_commerce/features/home/presentation/manger/categories_details_riverpod.dart';
 import 'package:e_commerce/features/home/presentation/view/productis_screen/categories_details_view.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:e_commerce/features/home/presentation/view/productis_screen/widget/loading_widget.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_shimmer/flutter_shimmer.dart';
 
 // ignore: must_be_immutable
 class CategoriesDetailsRivepodWork extends ConsumerWidget {
   CategoriesDetailsRivepodWork({super.key, required this.categoryId});
 
   final int categoryId;
-  // late int id = categoryId.id;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -26,7 +24,9 @@ class CategoriesDetailsRivepodWork extends ConsumerWidget {
         );
       },
       loading: () {
-        return const ProfileShimmer();
+        return const Scaffold(
+          body: LoadingWidget(),
+        );
       },
     );
   }

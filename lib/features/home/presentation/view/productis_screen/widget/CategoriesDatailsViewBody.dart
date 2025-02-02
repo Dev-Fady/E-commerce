@@ -41,7 +41,9 @@ class CategoriesDatailsViewBody extends StatelessWidget {
         SliverPersistentHeader(
           pinned: false,
           delegate: SliverAppBarDelegate(
-            child:  BestSellingHeader(data: data,),
+            child: BestSellingHeader(
+              data: data,
+            ),
           ),
         ),
         SliverPadding(
@@ -55,7 +57,7 @@ class CategoriesDatailsViewBody extends StatelessWidget {
         SliverPersistentHeader(
           pinned: true,
           delegate: SliverAppBarDelegate(
-            child:  AllItemHeader(data: data),
+            child: AllItemHeader(data: data),
           ),
         ),
         SliverList(
@@ -63,7 +65,7 @@ class CategoriesDatailsViewBody extends StatelessWidget {
             (context, index) {
               return BuildAllItem(data: data[index]);
             },
-            childCount: data.length - 3,
+            childCount: data.length,
           ),
         ),
       ],
