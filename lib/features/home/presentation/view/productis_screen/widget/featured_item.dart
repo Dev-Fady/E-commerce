@@ -1,14 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/core/constants/images.dart';
 import 'package:e_commerce/core/theme/app_text_styles.dart';
 import 'package:e_commerce/core/widget/cusstom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg;
 
-// TODO add
+import '../../../../domain/entites/categories_details_entity.dart';
+
 class FeaturedItem extends StatelessWidget {
-  const FeaturedItem({super.key});
+  const FeaturedItem({super.key, required this.data});
+
+  final CategoriesDetailsEntity data;
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +32,14 @@ class FeaturedItem extends StatelessWidget {
                 bottom: 0,
                 top: 0,
                 right: size.width * 0.4,
-                child: SvgPicture.asset(
-                  Assets.imagePageViewItem2Image,
-                  fit: BoxFit.fill,
+                child: CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  imageUrl: data.image,
+                  placeholder: (context, url) =>
+                      Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) => Image.asset(
+                      'assets/images/customer/avatar.png',
+                      fit: BoxFit.cover),
                 ),
               ),
               Container(
@@ -53,7 +61,7 @@ class FeaturedItem extends StatelessWidget {
                           .copyWith(color: Colors.white),
                     ),
                     Text(
-                      'خصم 25%',
+                      'خصم ${data.discount}%',
                       style: AppTextStyles.bodyLargeBold19.copyWith(
                         color: Colors.white,
                       ),

@@ -36,7 +36,7 @@ class CategoriesDatailsViewBody extends StatelessWidget {
           ),
         ),
         SliverToBoxAdapter(
-          child: FeaturedItemList(),
+          child: FeaturedItemList(data: data,),
         ),
         SliverPersistentHeader(
           pinned: false,
