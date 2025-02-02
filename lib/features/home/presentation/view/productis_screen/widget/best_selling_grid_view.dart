@@ -9,19 +9,17 @@ class BestSellingGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: SizedBox(
-        height: 240.h,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: 5,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.only(right: 12.w),
-              child: BestSeller(),
-            );
-          },
-        ),
+    return SizedBox(
+      height: 240.h,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 5,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.only(right: 12.w),
+            child: BestSeller(),
+          );
+        },
       ),
     );
   }
