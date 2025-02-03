@@ -8,4 +8,5 @@ class RouterName {
   static const String bestSelling = "/bestSelling";
   static const String categories_details_rivepod_work = "/products_view";
   static const String all_productis = "/all_Productis";
+  static const String product_details_view = "/product_details_view";
 }

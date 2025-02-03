@@ -9,6 +9,7 @@ import 'package:e_commerce/features/best_selling_fruits/presentation/view/bset_s
 import 'package:e_commerce/features/home/presentation/view/home_view.dart';
 import 'package:e_commerce/features/main/presentation/view/main_view.dart';
 import 'package:e_commerce/features/on_boarding/presentation/view/on_boarding_view.dart';
+import 'package:e_commerce/features/product_details/view/product_details_view.dart';
 import 'package:e_commerce/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -22,6 +23,14 @@ GoRouter createRouter(String initialLocation) {
   return GoRouter(
     initialLocation: initialLocation,
     routes: [
+      GoRoute(
+        path: RouterName.product_details_view,
+        name: RouterName.product_details_view,
+        builder: (context, state) {
+          final product = state.extra as CategoriesDetailsEntity;
+          return ProductDetailsView(data: product);
+        },
+      ),
       GoRoute(
         path: RouterName.splashScreen,
         name: RouterName.splashScreen,
@@ -40,7 +49,8 @@ GoRouter createRouter(String initialLocation) {
           path: RouterName.all_productis,
           name: RouterName.all_productis,
           builder: (context, state) {
-            final  categoriesDtails = state.extra as List<CategoriesDetailsEntity>;
+            final categoriesDtails =
+                state.extra as List<CategoriesDetailsEntity>;
             return AllProductis(
               data: categoriesDtails,
             );
