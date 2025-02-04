@@ -24,7 +24,7 @@ class _ListImagesState extends State<ListImages> {
       options: CarouselOptions(
         height: 200,
         enlargeCenterPage: true,
-        autoPlay: true,
+        autoPlay: false,
         onPageChanged: (index, reason) {
           widget.onIndexChanged(index);
         },
