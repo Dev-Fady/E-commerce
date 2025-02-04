@@ -1,56 +1,61 @@
-import 'dart:developer';
-import 'package:e_commerce/features/favorites/presentation/manger/add_or_delete_favorites_rivepod.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:remixicon/remixicon.dart';
+import '../../../favorites/presentation/manger/cubit/add_or_delete_favorites_cubit.dart';
 
-final favoriteStatusProvider = StateProvider<bool>((ref) => false);
-
-class AddFavorite extends ConsumerWidget {
+class AddFavorite extends StatelessWidget {
   const AddFavorite({super.key, required this.id});
 
   final int id;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isFavorite = ref.watch(favoriteStatusProvider);
-
-    return IconButton(
-      onPressed: () async {
-        try {
-          final newStatus = !isFavorite;
-          ref.read(favoriteStatusProvider.notifier).state = newStatus;
-
-          // Call the API to add or remove from favorites
-          final result =
-              await ref.watch(AddOrDeleteFavoritesProvider(id).future);
-
-          log('********************Favorited: ${result.message}*********************');
-
-          // Show success message
+  Widget build(BuildContext context) {
+    return BlocConsumer<AddOrDeleteFavoritesCubit, AddOrDeleteFavoritesState>(
+      listener: (context, state) {
+        if (state is AddOrDeleteFavoritesFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(result.message)),
+            SnackBar(content: Text('Error: ${state.error.message}')),
           );
-
-          // If successful, update the favorite status based on the result
-          ref.watch(favoriteStatusProvider.notifier).state = newStatus;
-        } catch (e) {
-          log('********************Error: ${e.toString()}*********************');
-
-          // Show failure message
+        } else if (state is AddOrDeleteFavoritesSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Failed to update favorite status')),
+            SnackBar(
+              content: Text(state.favorite.message),
+            ),
           );
-
-          // Revert the favorite status back to its original value if there's an error
-          ref.read(favoriteStatusProvider.notifier).state = !isFavorite;
         }
       },
-      icon: Icon(
-        isFavorite ? Icons.favorite : Icons.favorite_border,
-        size: 32.h,
-        color: isFavorite ? Colors.red : null,
-      ),
+      builder: (context, state) {
+        if (state is AddOrDeleteFavoritesLoading) {
+          return Center(child: CircularProgressIndicator());
+        }
+
+        return FutureBuilder<bool>(
+          future: Future.value(
+              context.read<AddOrDeleteFavoritesCubit>().isFavorite(id)),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            }
+
+            bool isFavorite = snapshot.data ?? false;
+
+            return IconButton(
+              onPressed: () async {
+                await context
+                    .read<AddOrDeleteFavoritesCubit>()
+                    .addOrRemoveFavorite(id);
+              },
+              icon: Icon(
+                isFavorite ? Remix.heart_fill : Remix.heart_3_line,
+                size: 32.h,
+                color:
+                    isFavorite ? Colors.red : Colors.grey, // red when favorite
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }

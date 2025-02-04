@@ -1,10 +1,13 @@
 import 'package:e_commerce/core/DI/dependency_injection.dart';
 import 'package:e_commerce/core/helper_functions/router/router_name.dart';
+import 'package:e_commerce/core/services/api/api_service.dart';
 import 'package:e_commerce/features/auth/presentation/manger/login/login_cubit.dart';
 import 'package:e_commerce/features/auth/presentation/manger/sign_up/sign_up_cubit.dart';
 import 'package:e_commerce/features/auth/presentation/view/login/login_view.dart';
 import 'package:e_commerce/features/auth/presentation/view/signup/sign_up_view.dart';
 import 'package:e_commerce/features/best_selling_fruits/presentation/view/bset_selling_view.dart';
+import 'package:e_commerce/features/favorites/data/repo/favorites_repo_impl.dart';
+import 'package:e_commerce/features/favorites/presentation/manger/cubit/add_or_delete_favorites_cubit.dart';
 // import 'package:e_commerce/features/home/domain/entites/categories_entity.dart';
 import 'package:e_commerce/features/home/presentation/view/home_view.dart';
 import 'package:e_commerce/features/main/presentation/view/main_view.dart';
@@ -28,7 +31,14 @@ GoRouter createRouter(String initialLocation) {
         name: RouterName.product_details_view,
         builder: (context, state) {
           final product = state.extra as CategoriesDetailsEntity;
-          return ProductDetailsView(data: product);
+          return BlocProvider(
+            create: (context) => AddOrDeleteFavoritesCubit(
+              favoritesRepo: FavoritesRepoImpl(
+                apiService: getIt<ApiService>(),
+              ),
+            ),
+            child: ProductDetailsView(data: product),
+          );
         },
       ),
       GoRoute(
