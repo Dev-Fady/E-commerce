@@ -27,7 +27,7 @@ class LogoutButton extends ConsumerWidget {
           logoutService.when(
               data: (data) async {
                 await CacheHelper()
-                    .saveData(key: kIsBoardingViewSeen, value: false);
+                    .saveData(key: kIsLigingViewSeen, value: false);
                 TokenStorage().deleteTokenLogin();
                 context.goNamed(RouterName.login);
                 CustomSnackbar.show(
