@@ -1,3 +1,5 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:e_commerce/core/widget/custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,14 +16,18 @@ class AddFavorite extends StatelessWidget {
     return BlocConsumer<AddOrDeleteFavoritesCubit, AddOrDeleteFavoritesState>(
       listener: (context, state) {
         if (state is AddOrDeleteFavoritesFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Error: ${state.error.message}')),
+          CustomSnackbar.show(
+            context: context,
+            title: 'تم بنجاح!',
+            message: state.error.message,
+            type: ContentType.failure,
           );
         } else if (state is AddOrDeleteFavoritesSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.favorite.message),
-            ),
+          CustomSnackbar.show(
+            context: context,
+            title: 'تم بنجاح!',
+            message: state.favorite.message,
+            type: ContentType.success,
           );
         }
       },
