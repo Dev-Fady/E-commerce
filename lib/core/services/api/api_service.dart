@@ -29,10 +29,15 @@ abstract class ApiService {
     @Body() Map<String, dynamic> body,
   );
 
-
   @GET("categories/{id}")
   Future<dynamic> categoryDetails(
     @Header("Authorization") String token,
     @Path("id") int categoryId,
+  );
+
+  @POST("favorites")
+  Future<dynamic> addOrDeleteFavorites(
+    @Header("Authorization") String token,
+    @Body() Map<String, dynamic> body,
   );
 }
