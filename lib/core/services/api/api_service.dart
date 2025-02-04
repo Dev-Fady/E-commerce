@@ -40,4 +40,9 @@ abstract class ApiService {
     @Header("Authorization") String token,
     @Body() Map<String, dynamic> body,
   );
+
+  @GET("favorites")
+  Future<dynamic> getFavorites(
+    @Header("Authorization") String token,
+  );
 }
