@@ -72,8 +72,10 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                     const SizedBox(height: 20),
                     Row(
                       spacing: 25.w,
-                      children: const [
-                        AddFavorite(),
+                      children: [
+                        AddFavorite(
+                          id: widget.data.id!,
+                        ),
                         AddToCart(),
                       ],
                     ),
