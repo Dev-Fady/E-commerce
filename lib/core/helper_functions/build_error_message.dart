@@ -1,14 +1,13 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 
+import '../widget/custom_snackbar.dart';
+
 void buildErrorBar(BuildContext context, String errorMessage) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text(
-        errorMessage,
-        style: TextStyle(color: Colors.white),
-      ),
-      backgroundColor: Colors.red,
-      duration: Duration(seconds: 3),
-    ),
+  CustomSnackbar.show(
+    context: context,
+    title: 'حدث خطاء',
+    message: errorMessage,
+    type: ContentType.failure,
   );
 }

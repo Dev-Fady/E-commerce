@@ -1,9 +1,11 @@
 import 'dart:developer';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:e_commerce/core/cache/cache_helper.dart';
 import 'package:e_commerce/core/helper_functions/build_error_message.dart';
 import 'package:e_commerce/core/helper_functions/router/router_name.dart';
+import 'package:e_commerce/core/widget/custom_snackbar.dart';
 import 'package:e_commerce/features/auth/presentation/manger/login/login_using_api_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -146,8 +148,11 @@ class _LoginButtonState extends ConsumerState<LoginButton> {
           buildErrorBar(context, failure.message);
         },
         (success) async {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('تم التسجيل بنجاح')),
+            CustomSnackbar.show(
+            context: context,
+            title: 'تم بنجاح!',
+            message: 'تم التسجيل بنجاح',
+            type: ContentType.success,
           );
           await CacheHelper().saveData(key: kIsLigingViewSeen, value: true);
           context.goNamed(RouterName.main_view);

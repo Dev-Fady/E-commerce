@@ -1,9 +1,11 @@
 import 'dart:developer';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:e_commerce/core/helper_functions/build_error_message.dart';
 import 'package:e_commerce/core/helper_functions/router/router_name.dart';
 import 'package:e_commerce/core/theme/app_colors.dart';
 import 'package:e_commerce/core/theme/app_text_styles.dart';
 import 'package:e_commerce/core/widget/cusstom_button.dart';
+import 'package:e_commerce/core/widget/custom_snackbar.dart';
 import 'package:e_commerce/features/auth/data/model/user_model_api.dart';
 import 'package:e_commerce/features/auth/presentation/manger/sign_up/register_using_api_riverpod.dart';
 import 'package:flutter/material.dart';
@@ -64,8 +66,11 @@ class _SignUpButtonState extends ConsumerState<SignUpButton> {
           buildErrorBar(context, failure.message);
         },
         (success) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('تم التسجيل بنجاح')),
+          CustomSnackbar.show(
+            context: context,
+            title: 'تم بنجاح!',
+            message: 'تم التسجيل بنجاح',
+            type: ContentType.success,
           );
           context.goNamed(RouterName.login);
         },

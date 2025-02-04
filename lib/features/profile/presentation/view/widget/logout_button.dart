@@ -1,7 +1,9 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:e_commerce/core/cache/cache_helper.dart';
 import 'package:e_commerce/core/constants/constanst.dart';
 import 'package:e_commerce/core/helper_functions/router/router_name.dart';
 import 'package:e_commerce/core/services/api/token_storage.dart';
+import 'package:e_commerce/core/widget/custom_snackbar.dart';
 import 'package:e_commerce/features/profile/presentation/manger/profile_rivepod.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,8 +30,12 @@ class LogoutButton extends ConsumerWidget {
                     .saveData(key: kIsBoardingViewSeen, value: false);
                 TokenStorage().deleteTokenLogin();
                 context.goNamed(RouterName.login);
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text(data.message)));
+                CustomSnackbar.show(
+                  context: context,
+                  title: 'تم بنجاح!',
+                  message: data.message,
+                  type: ContentType.warning,
+                );
               },
               loading: () => const Center(child: CircularProgressIndicator()),
               error: (err, stack) {
