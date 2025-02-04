@@ -7,7 +7,9 @@ import 'package:e_commerce/features/auth/presentation/view/login/login_view.dart
 import 'package:e_commerce/features/auth/presentation/view/signup/sign_up_view.dart';
 import 'package:e_commerce/features/best_selling_fruits/presentation/view/bset_selling_view.dart';
 import 'package:e_commerce/features/favorites/data/repo/favorites_repo_impl.dart';
+import 'package:e_commerce/features/favorites/domain/entites/get_favorites_entity.dart';
 import 'package:e_commerce/features/favorites/presentation/manger/cubit/add_or_delete_favorites_cubit.dart';
+import 'package:e_commerce/features/favorites/presentation/view/favorites_view.dart';
 // import 'package:e_commerce/features/home/domain/entites/categories_entity.dart';
 import 'package:e_commerce/features/home/presentation/view/home_view.dart';
 import 'package:e_commerce/features/main/presentation/view/main_view.dart';
@@ -41,6 +43,15 @@ GoRouter createRouter(String initialLocation) {
           );
         },
       ),
+      GoRoute(
+          path: RouterName.favorites_view,
+          name: RouterName.favorites_view,
+          builder: (context, state) {
+            final favorite = state.extra as List<GetFavoritesEntity>;
+            return FavoritesView(
+              data: favorite,
+            );
+          }),
       GoRoute(
         path: RouterName.splashScreen,
         name: RouterName.splashScreen,
