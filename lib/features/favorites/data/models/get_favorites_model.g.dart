@@ -45,19 +45,29 @@ Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
     };
 
 DataPro _$DataProFromJson(Map<String, dynamic> json) => DataPro(
-      id: (json['id'] as num?)?.toInt(),
-      price: (json['price'] as num?)?.toInt(),
-      oldPrice: (json['oldPrice'] as num?)?.toInt(),
-      discount: (json['discount'] as num?)?.toInt(),
+      mainId: (json['id'] as num).toInt(),
+      product: Product.fromJson(json['product'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$DataProToJson(DataPro instance) => <String, dynamic>{
+      'id': instance.mainId,
+      'product': instance.product,
+    };
+
+Product _$ProductFromJson(Map<String, dynamic> json) => Product(
+      id: (json['id'] as num).toInt(),
+      price: (json['price'] as num).toInt(),
+      oldPrice: (json['old_price'] as num).toInt(),
+      discount: (json['discount'] as num).toInt(),
       image: json['image'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
     );
 
-Map<String, dynamic> _$DataProToJson(DataPro instance) => <String, dynamic>{
+Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'id': instance.id,
       'price': instance.price,
-      'oldPrice': instance.oldPrice,
+      'old_price': instance.oldPrice,
       'discount': instance.discount,
       'image': instance.image,
       'name': instance.name,
