@@ -51,4 +51,10 @@ abstract class ApiService {
     @Header("Authorization") String token,
     @Path("id") int categoryId,
   );
+
+  @POST("carts")
+  Future<dynamic> addOrDeleteCart(
+    @Header("Authorization") String token,
+    @Body() Map<String, dynamic> body,
+  );
 }
