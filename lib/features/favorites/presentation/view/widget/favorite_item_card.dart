@@ -1,9 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/core/DI/dependency_injection.dart';
 import 'package:e_commerce/core/services/api/api_service.dart';
+import 'package:e_commerce/features/cart/data/repo/cart_repo_impl.dart';
+import 'package:e_commerce/features/cart/presentation/manger/cubit/add_or_delete_cart_cubit.dart';
 import 'package:e_commerce/features/favorites/data/repo/favorites_repo_impl.dart';
 import 'package:e_commerce/features/favorites/domain/entites/get_favorites_entity.dart';
 import 'package:e_commerce/features/favorites/presentation/manger/cubit/delete_favorite_cubit.dart';
+import 'package:e_commerce/features/favorites/presentation/view/widget/add_to_cart.dart';
 import 'package:e_commerce/features/favorites/presentation/view/widget/delete_favorite.dart';
 import 'package:e_commerce/features/favorites/presentation/view/widget/name_production.dart';
 import 'package:e_commerce/features/favorites/presentation/view/widget/price_production.dart';
@@ -17,9 +20,18 @@ class FavoriteItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => DeleteFavoriteCubit(
-          favoritesRepo: FavoritesRepoImpl(apiService: getIt<ApiService>())),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => DeleteFavoriteCubit(
+              favoritesRepo:
+                  FavoritesRepoImpl(apiService: getIt<ApiService>())),
+        ),
+        BlocProvider(
+          create: (context) => AddOrDeleteCartCubit(
+              cartRepo: CartRepoImpl(apiService: getIt<ApiService>())),
+        ),
+      ],
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         elevation: 5,
@@ -48,24 +60,16 @@ class FavoriteItemCard extends StatelessWidget {
             SizedBox(height: 8.h),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  DeleteFavorite(
-                    product: data,
-                  ),
-                  OutlinedButton.icon(
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.blue,
-                      side: const BorderSide(color: Colors.blue),
-                    ),
-                    onPressed: () {
-                      // Handle add to cart
-                    },
-                    icon: const Icon(Icons.shopping_cart),
-                    label: const Text("Add"),
-                  ),
-                ],
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    DeleteFavorite(product: data),
+                    AddToCart(id: data.productId),
+                  ],
+                ),
               ),
             ),
           ],
