@@ -45,7 +45,7 @@ class FavoritesRepoImpl implements FavoritesRepo {
       final List<dynamic> results = data['data']['data'];
 
       final products =
-          results.map((item) => DataPro.fromJson(item['product'])).toList();
+          results.map((item) => DataPro.fromJson(item)).toList();
 
       return Right(products);
     } catch (e) {

@@ -18,8 +18,7 @@ class FavoriteItemCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
-            borderRadius:
-                 BorderRadius.vertical(top: Radius.circular(12.r)),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(12.r)),
             child: Hero(
               tag: data.name,
               child: CachedNetworkImage(
