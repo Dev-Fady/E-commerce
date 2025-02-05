@@ -76,7 +76,9 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                         AddFavorite(
                           id: widget.data.id!,
                         ),
-                        AddToCart(),
+                        AddToCart(
+                          id: widget.data.id!,
+                        ),
                       ],
                     ),
                     const SizedBox(height: 20),
