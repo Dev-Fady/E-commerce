@@ -6,6 +6,8 @@ import 'package:e_commerce/features/auth/presentation/manger/sign_up/sign_up_cub
 import 'package:e_commerce/features/auth/presentation/view/login/login_view.dart';
 import 'package:e_commerce/features/auth/presentation/view/signup/sign_up_view.dart';
 import 'package:e_commerce/features/best_selling_fruits/presentation/view/bset_selling_view.dart';
+import 'package:e_commerce/features/cart/data/repo/cart_repo_impl.dart';
+import 'package:e_commerce/features/cart/presentation/manger/cubit/add_or_delete_cart_cubit.dart';
 import 'package:e_commerce/features/favorites/data/repo/favorites_repo_impl.dart';
 import 'package:e_commerce/features/favorites/domain/entites/get_favorites_entity.dart';
 import 'package:e_commerce/features/favorites/presentation/manger/cubit/add_or_delete_favorites_cubit.dart';
@@ -33,12 +35,23 @@ GoRouter createRouter(String initialLocation) {
         name: RouterName.product_details_view,
         builder: (context, state) {
           final product = state.extra as CategoriesDetailsEntity;
-          return BlocProvider(
-            create: (context) => AddOrDeleteFavoritesCubit(
-              favoritesRepo: FavoritesRepoImpl(
-                apiService: getIt<ApiService>(),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => AddOrDeleteFavoritesCubit(
+                  favoritesRepo: FavoritesRepoImpl(
+                    apiService: getIt<ApiService>(),
+                  ),
+                ),
               ),
-            ),
+              BlocProvider(
+                create: (context) => AddOrDeleteCartCubit(
+                  cartRepo: CartRepoImpl(
+                    apiService: getIt<ApiService>(),
+                  ),
+                ),
+              ),
+            ],
             child: ProductDetailsView(data: product),
           );
         },
