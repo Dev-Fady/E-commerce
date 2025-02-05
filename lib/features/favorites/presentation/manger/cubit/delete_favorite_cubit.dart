@@ -28,7 +28,8 @@ class DeleteFavoriteCubit extends Cubit<DeleteFavoriteState> {
       (failure) {
         emit(DeleteFavoriteFailure(error: failure));
       },
-      (favorite) {
+      (favorite) async {
+        await prefs.removeData(key: 'favorite_${favorite.data!.product!.id}');
         emit(DeleteFavoriteSuccess(favorite: favorite));
       },
     );
