@@ -45,4 +45,10 @@ abstract class ApiService {
   Future<dynamic> getFavorites(
     @Header("Authorization") String token,
   );
+
+  @DELETE("favorites/{id}")
+  Future<dynamic> deleteFavorait(
+    @Header("Authorization") String token,
+    @Path("id") int categoryId,
+  );
 }
