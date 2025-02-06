@@ -1,13 +1,14 @@
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../core/constants/images.dart';
+import '../../../domain/entites/get_carts_entity.dart';
 
 class ImageProtuction extends StatelessWidget {
   const ImageProtuction({
-    super.key,
+    super.key, required this.data,
   });
+    final GetCartsEntity data;
+
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +16,15 @@ class ImageProtuction extends StatelessWidget {
       height: 120.h,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.r),
-        child: Image.asset(
-          Assets.imageAppIcon2,
+        child: CachedNetworkImage(
+          fit: BoxFit.cover,
           width: 80,
-          fit: BoxFit.fitHeight,
+          imageUrl: data.image,
+          placeholder: (context, url) =>
+              const Center(child: CircularProgressIndicator()),
+          errorWidget: (context, url, error) => Image.asset(
+              'assets/images/customer/avatar.png',
+              fit: BoxFit.cover),
         ),
       ),
     );

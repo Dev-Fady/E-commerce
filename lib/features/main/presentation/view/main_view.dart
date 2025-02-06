@@ -1,4 +1,5 @@
 import 'package:e_commerce/core/theme/app_text_styles.dart';
+import 'package:e_commerce/features/cart/presentation/view/cart_view_rivepod_work.dart';
 import 'package:e_commerce/features/favorites/presentation/view/favorites_view_rivepod_work.dart';
 import 'package:e_commerce/features/home/presentation/view/home_view.dart';
 import 'package:e_commerce/features/main/presentation/widgets/custom_bottom_nav_bar.dart';
@@ -18,7 +19,7 @@ class _MainViewState extends State<MainView> {
   final List<Widget> _pages = [
     HomeView(),
     FavoritesViewRivepodWork(),
-    Center(child: Text("🛍️ التسوق", style: AppTextStyles.bodyXSmallRegular11)),
+    CartViewRivepodWork(),
     Center(
         child: Text("🔔 الإشعارات", style: AppTextStyles.bodyXSmallRegular11)),
     PerfileView(),

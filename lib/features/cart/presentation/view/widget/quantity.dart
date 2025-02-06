@@ -1,9 +1,9 @@
+import 'package:e_commerce/features/cart/domain/entites/get_carts_entity.dart';
 import 'package:flutter/material.dart';
 
 class Quantity extends StatelessWidget {
-  const Quantity({
-    super.key,
-  });
+  const Quantity({super.key, required this.data});
+  final GetCartsEntity data;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class Quantity extends StatelessWidget {
           icon: const Icon(Icons.remove_circle, color: Colors.red),
           onPressed: () {}, // Handle decrease quantity
         ),
-        const Text('1',
+        Text(data.quantity.toString(),
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
         IconButton(
           icon: const Icon(Icons.add_circle, color: Colors.green),

@@ -11,6 +11,8 @@ class NameProdcution extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       name,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
     );
   }
