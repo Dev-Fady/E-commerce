@@ -7,7 +7,9 @@ import 'package:e_commerce/features/auth/presentation/view/login/login_view.dart
 import 'package:e_commerce/features/auth/presentation/view/signup/sign_up_view.dart';
 import 'package:e_commerce/features/best_selling_fruits/presentation/view/bset_selling_view.dart';
 import 'package:e_commerce/features/cart/data/repo/cart_repo_impl.dart';
+import 'package:e_commerce/features/cart/domain/entites/get_carts_entity.dart';
 import 'package:e_commerce/features/cart/presentation/manger/cubit/add_or_delete_cart_cubit.dart';
+import 'package:e_commerce/features/cart/presentation/view/cart_view.dart';
 import 'package:e_commerce/features/favorites/data/repo/favorites_repo_impl.dart';
 import 'package:e_commerce/features/favorites/domain/entites/get_favorites_entity.dart';
 import 'package:e_commerce/features/favorites/presentation/manger/cubit/add_or_delete_favorites_cubit.dart';
@@ -62,6 +64,15 @@ GoRouter createRouter(String initialLocation) {
           builder: (context, state) {
             final favorite = state.extra as List<GetFavoritesEntity>;
             return FavoritesView(
+              data: favorite,
+            );
+          }),
+      GoRoute(
+          path: RouterName.cart_view,
+          name: RouterName.cart_view,
+          builder: (context, state) {
+            final favorite = state.extra as List<GetCartsEntity>;
+            return CartView(
               data: favorite,
             );
           }),
