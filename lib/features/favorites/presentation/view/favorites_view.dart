@@ -18,7 +18,7 @@ class FavoritesView extends StatelessWidget {
         centerTitle: true,
       ),
       body: data.isEmpty
-          ? NoItem()
+          ? NoItem(text: "No favorites yet!")
           : FavoreiteViewBody(data: data),
     );
   }
