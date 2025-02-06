@@ -57,4 +57,9 @@ abstract class ApiService {
     @Header("Authorization") String token,
     @Body() Map<String, dynamic> body,
   );
+
+  @GET("carts")
+  Future<dynamic> getCart(
+    @Header("Authorization") String token,
+  );
 }
