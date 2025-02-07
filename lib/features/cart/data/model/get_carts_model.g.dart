@@ -17,15 +17,15 @@ Map<String, dynamic> _$GetCartsModelToJson(GetCartsModel instance) =>
     };
 
 Data _$DataFromJson(Map<String, dynamic> json) => Data(
-      data: (json['data'] as List<dynamic>)
+      data: (json['cart_items'] as List<dynamic>)
           .map((e) => CartItems.fromJson(e as Map<String, dynamic>))
           .toList(),
-      subTotal: (json['sub_total'] as num).toInt(),
-      total: (json['total'] as num).toInt(),
+      subTotal: (json['sub_total'] as num).toDouble(),
+      total: (json['total'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
-      'data': instance.data,
+      'cart_items': instance.data,
       'sub_total': instance.subTotal,
       'total': instance.total,
     };

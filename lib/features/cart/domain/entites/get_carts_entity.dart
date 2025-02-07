@@ -1,4 +1,4 @@
-class GetCartsEntity {
+class GetCartsEntity extends Price {
   final int mainId; // ID الأساسي للمفضلة
   final int productId; // ID الخاص بالمنتج
   final int quantity;
@@ -19,5 +19,14 @@ class GetCartsEntity {
     required this.image,
     required this.name,
     required this.description,
+    required super.subTotal,
+    required super.total,
   });
+}
+
+class Price {
+  final double subTotal;
+  final double total;
+
+  Price({required this.subTotal, required this.total});
 }
