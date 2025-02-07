@@ -43,7 +43,13 @@ class CartRepoImpl implements CartRepo {
 
       final List<dynamic> results = data['data']['cart_items'];
 
-      final products = results.map((item) => CartItems.fromJson(item)).toList();
+      final double subTotal = (data['data']['sub_total'] as num).toDouble();
+      final double total = (data['data']['total'] as num).toDouble();
+
+      final products = results
+          .map((item) =>
+              CartItems.fromJson(item)..setSubTotalAndTotal(subTotal, total))
+          .toList();
 
       return Right(products);
     } catch (e) {
