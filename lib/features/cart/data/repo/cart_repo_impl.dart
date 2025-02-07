@@ -7,9 +7,11 @@ import 'package:e_commerce/core/services/api/api_service.dart';
 import 'package:e_commerce/features/cart/data/model/add_or_remove_cart_model.dart';
 import 'package:e_commerce/features/cart/data/model/delete_cart_model.dart';
 import 'package:e_commerce/features/cart/data/model/get_carts_model.dart';
+import 'package:e_commerce/features/cart/data/model/updata_cart_model.dart';
 import 'package:e_commerce/features/cart/domain/entites/add_or_remove_cart_entity.dart';
 import 'package:e_commerce/features/cart/domain/entites/delete_cart_entity.dart';
 import 'package:e_commerce/features/cart/domain/entites/get_carts_entity.dart';
+import 'package:e_commerce/features/cart/domain/entites/updata_cart_entity.dart';
 import 'package:e_commerce/features/cart/domain/repo/cart_repo.dart';
 
 class CartRepoImpl implements CartRepo {
@@ -61,14 +63,33 @@ class CartRepoImpl implements CartRepo {
   }
 
   @override
-  Future<Either<Faliure, DeleteCartEntity>> deleteCart({required String token, required int productId}) async{
-     try {
+  Future<Either<Faliure, DeleteCartEntity>> deleteCart(
+      {required String token, required int productId}) async {
+    try {
       final response = await apiService.deleteCart(token, productId);
       final deleteCartModel = DeleteCartModel.fromJson(response);
       final deleteCartEntity = deleteCartModel.toEntity();
       return Right(deleteCartEntity);
     } catch (e) {
       log('Exception in deleteFavorite: $e');
+      return Left(ServerFaliure("حدث خطأ ما. الرجا�� المحاولة مرة ا��خرى. "));
+    }
+  }
+
+  @override
+  Future<Either<Faliure, UpdataCartEntity>> updataCart(
+      {required String token,
+      required int productId,
+      required int quantity}) async {
+    try {
+      final response = await apiService.updataCart(token, productId, {
+        "quantity": quantity,
+      });
+      final updateCartModel = UpdataCartModel.fromJson(response);
+      final updateCartEntity = updateCartModel.toEntity();
+      return Right(updateCartEntity);
+    } catch (e) {
+      log('Exception in updataCart: $e');
       return Left(ServerFaliure("حدث خطأ ما. الرجا�� المحاولة مرة ا��خرى. "));
     }
   }
