@@ -3,6 +3,7 @@ import 'package:e_commerce/core/services/api/api_service.dart';
 import 'package:e_commerce/features/cart/data/repo/cart_repo_impl.dart';
 import 'package:e_commerce/features/cart/domain/entites/get_carts_entity.dart';
 import 'package:e_commerce/features/cart/presentation/manger/cubit/delete_cart_cubit.dart';
+import 'package:e_commerce/features/cart/presentation/manger/cubit/updata_cart_cubit.dart';
 import 'package:e_commerce/features/cart/presentation/view/widget/delete_cart.dart';
 import 'package:e_commerce/features/cart/presentation/view/widget/image_protuction.dart';
 import 'package:e_commerce/features/cart/presentation/view/widget/name_prodcution.dart';
@@ -20,9 +21,23 @@ class CartItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => DeleteCartCubit(
-          cartRepo: CartRepoImpl(apiService: getIt<ApiService>())),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => DeleteCartCubit(
+            cartRepo: CartRepoImpl(
+              apiService: getIt<ApiService>(),
+            ),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => UpdataCartCubit(
+            cartRepo: CartRepoImpl(
+              apiService: getIt<ApiService>(),
+            ),
+          ),
+        ),
+      ],
       child: Card(
         margin: const EdgeInsets.only(bottom: 16.0),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
