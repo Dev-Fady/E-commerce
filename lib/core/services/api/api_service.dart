@@ -62,4 +62,10 @@ abstract class ApiService {
   Future<dynamic> getCart(
     @Header("Authorization") String token,
   );
+
+  @DELETE("carts/{id}")
+  Future<dynamic> deleteCart(
+    @Header("Authorization") String token,
+    @Path("id") int categoryId,
+  );
 }
