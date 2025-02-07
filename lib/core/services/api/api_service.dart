@@ -68,4 +68,11 @@ abstract class ApiService {
     @Header("Authorization") String token,
     @Path("id") int categoryId,
   );
+
+  @PUT("carts/{id}")
+  Future<dynamic> updataCart(
+    @Header("Authorization") String token,
+    @Path("id") int categoryId,
+    @Body() Map<String, dynamic> body,
+  );
 }
