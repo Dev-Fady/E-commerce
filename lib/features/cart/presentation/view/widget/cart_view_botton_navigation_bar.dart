@@ -1,9 +1,12 @@
+import 'package:e_commerce/features/cart/domain/entites/get_carts_entity.dart';
 import 'package:flutter/material.dart';
 
 class CartViewBottonNavigationBar extends StatelessWidget {
   const CartViewBottonNavigationBar({
     super.key,
+    required this.data,
   });
+  final GetCartsEntity data;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +19,8 @@ class CartViewBottonNavigationBar extends StatelessWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
-        child: const Text(
-          'إتمام الشراء',
+        child: Text(
+          'إتمام الشراء ${data.subTotal}  L.E',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),

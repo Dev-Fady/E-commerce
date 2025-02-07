@@ -21,8 +21,14 @@ class CartView extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: data.isEmpty ? NoItem(text: 'No Carts yet!') : CartViewBody(data: data,),
-      bottomNavigationBar: CartViewBottonNavigationBar(),
+      body: data.isEmpty
+          ? NoItem(text: 'No Carts yet!')
+          : CartViewBody(
+              data: data,
+            ),
+      bottomNavigationBar: CartViewBottonNavigationBar(
+        data: data[0],
+      ),
     );
   }
 }
