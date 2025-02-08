@@ -10,6 +10,8 @@ class BannerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffF7F7F9),
+      extendBody: true,
       appBar: AppBar(
         title: const Text("العروض والخصومات"),
         centerTitle: true,

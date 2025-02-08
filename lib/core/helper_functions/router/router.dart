@@ -24,6 +24,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../features/auth/domain/repo/auth_repo.dart';
+import '../../../features/banners/domain/entites/banner_entity.dart';
+import '../../../features/banners/presentation/view/details_view/banner_product_details_view.dart';
 import '../../../features/home/domain/entites/categories_details_entity.dart';
 import '../../../features/home/presentation/view/productis_screen/categories_details_rivepod_work.dart';
 import '../../../features/home/presentation/view/productis_screen/widget/all_productis.dart';
@@ -32,6 +34,32 @@ GoRouter createRouter(String initialLocation) {
   return GoRouter(
     initialLocation: initialLocation,
     routes: [
+      GoRoute(
+        path: RouterName.banner_product_details_view,
+        name: RouterName.banner_product_details_view,
+        builder: (context, state) {
+          final product = state.extra as Products;
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => AddOrDeleteFavoritesCubit(
+                  favoritesRepo: FavoritesRepoImpl(
+                    apiService: getIt<ApiService>(),
+                  ),
+                ),
+              ),
+              BlocProvider(
+                create: (context) => AddOrDeleteCartCubit(
+                  cartRepo: CartRepoImpl(
+                    apiService: getIt<ApiService>(),
+                  ),
+                ),
+              ),
+            ],
+            child: BannerProductDetailsView(data: product),
+          );
+        },
+      ),
       GoRoute(
         path: RouterName.product_details_view,
         name: RouterName.product_details_view,
