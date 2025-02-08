@@ -1,4 +1,4 @@
-import 'package:e_commerce/core/theme/app_text_styles.dart';
+import 'package:e_commerce/features/banners/presentation/view/banner_view_rivepod_work.dart';
 import 'package:e_commerce/features/cart/presentation/view/cart_view_rivepod_work.dart';
 import 'package:e_commerce/features/favorites/presentation/view/favorites_view_rivepod_work.dart';
 import 'package:e_commerce/features/home/presentation/view/home_view.dart';
@@ -17,12 +17,11 @@ class _MainViewState extends State<MainView> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    HomeView(),
-    FavoritesViewRivepodWork(),
-    CartViewRivepodWork(),
-    Center(
-        child: Text("🔔 الإشعارات", style: AppTextStyles.bodyXSmallRegular11)),
-    PerfileView(),
+    const HomeView(),
+    const FavoritesViewRivepodWork(),
+    const CartViewRivepodWork(),
+    const BannerViewRivepodWork(),
+    const PerfileView(),
   ];
 
   void _onItemTapped(int index) {
@@ -34,7 +33,7 @@ class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF7F7F9),
+      backgroundColor: const Color(0xffF7F7F9),
       extendBody: true,
       body: SafeArea(
         child: _pages[_selectedIndex],
@@ -45,7 +44,7 @@ class _MainViewState extends State<MainView> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,
-        shape: CircleBorder(),
+        shape: const CircleBorder(),
         onPressed: () {
           setState(() {
             _selectedIndex = 2;

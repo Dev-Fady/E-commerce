@@ -34,7 +34,7 @@ class CustomBottomNavBar extends StatelessWidget {
                   ),
                   SizedBox(width: 40.w),
                   IconButton(
-                    icon: Icon(Remix.notification_3_line,
+                    icon: Icon(Remix.store_line,
                         color: selectedIndex == 3 ? Colors.blue : Colors.grey),
                     onPressed: () => onItemTapped(3),
                   ),
