@@ -25,7 +25,7 @@ class DeleteCartCubit extends Cubit<DeleteCartState> {
         emit(DeleteCartFailure(error: failure));
       },
       (cart) async {
-        await prefs.removeData(key: 'favorite_${cart.data!.cart!.id}');
+        await prefs.removeData(key: 'cart_${cart.data!.cart!.product!.id}');
         emit(DeleteCartSuccess(Cart: cart));
       },
     );
