@@ -75,4 +75,9 @@ abstract class ApiService {
     @Path("id") int categoryId,
     @Body() Map<String, dynamic> body,
   );
+
+  @GET("home")
+  Future<dynamic> getBanner(
+    @Header("Authorization") String token,
+  );
 }
