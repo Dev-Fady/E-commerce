@@ -86,4 +86,9 @@ abstract class ApiService {
     @Header("Authorization") String token,
     @Body() Map<String, dynamic> body,
   );
+
+  @GET("orders")
+  Future<dynamic> getOrders(
+    @Header("Authorization") String token,
+  );
 }
