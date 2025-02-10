@@ -18,7 +18,7 @@ import 'package:e_commerce/features/favorites/presentation/view/favorites_view.d
 import 'package:e_commerce/features/home/presentation/view/home_view.dart';
 import 'package:e_commerce/features/main/presentation/view/main_view.dart';
 import 'package:e_commerce/features/on_boarding/presentation/view/on_boarding_view.dart';
-import 'package:e_commerce/features/orders/presentation/view/orders_details/order_details_view.dart';
+import 'package:e_commerce/features/orders/presentation/view/orders_details/order_datails_rivepod_work.dart';
 import 'package:e_commerce/features/orders/presentation/view/orders_screen.dart';
 import 'package:e_commerce/features/product_details/view/product_details_view.dart';
 import 'package:e_commerce/features/splash/presentation/views/splash_view.dart';
@@ -176,10 +176,14 @@ GoRouter createRouter(String initialLocation) {
         builder: (context, state) => OrdersScreen(),
       ),
       GoRoute(
-        path: RouterName.order_details_view,
-        name: RouterName.order_details_view,
-        builder: (context, state) => OrderDetailsView(),
-      ),
+          path: RouterName.order_datails_rivepod_work,
+          name: RouterName.order_datails_rivepod_work,
+          builder: (context, state) {
+            final int id = state.extra as int;
+            return OrderDatailsRivepodWork(
+              id: id,
+            );
+          }),
     ],
   );
 }

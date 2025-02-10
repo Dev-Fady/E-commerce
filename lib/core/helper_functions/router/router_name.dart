@@ -13,5 +13,5 @@ class RouterName {
   static const String cart_view = "/cart_view";
   static const String banner_product_details_view = "/banner_product_details_view";
   static const String orders_screen = "/orders_screen";
-  static const String order_details_view = "/order_details_view";
+  static const String order_datails_rivepod_work = "/order_datails_rivepod_work";
 }
