@@ -23,7 +23,8 @@ class BodyOrderView extends StatelessWidget {
             final isZero = orders.data!.data!.first == 0;
             return InkWell(
               onTap: () {
-                context.push(RouterName.order_details_view);
+                context.push(RouterName.order_datails_rivepod_work,
+                    extra: orders.data!.data![index].id);
               },
               child: Card(
                 color: isZero ? Colors.grey[200] : Colors.white,

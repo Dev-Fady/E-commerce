@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../../../domain/entites/order_details_entity.dart';
+
 class AddressDetails extends StatelessWidget {
+  const AddressDetails({super.key, required this.data});
+
+  final OrderDetailsEntity data;
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -13,9 +19,9 @@ class AddressDetails extends StatelessWidget {
             Text('عنوان التوصيل',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             Divider(),
-            Text('المدينة: El Rehab City, New Cairo'),
-            Text('التفاصيل: Group 60 - Building 5 - App 43'),
-            Text('ملاحظات: No Notes'),
+            Text('المدينة: ${data.data!.address!.city}'),
+            Text('التفاصيل: ${data.data!.address!.details}'),
+            Text('ملاحظات: ${data.data!.address!.notes}'),
           ],
         ),
       ),

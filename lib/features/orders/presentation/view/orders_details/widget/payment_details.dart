@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../../../domain/entites/order_details_entity.dart';
+
 class PaymentDetails extends StatelessWidget {
+  const PaymentDetails({super.key, required this.data});
+
+  final OrderDetailsEntity data;
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -13,12 +19,13 @@ class PaymentDetails extends StatelessWidget {
             Text('تفاصيل الدفع',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             Divider(),
-            Text('المبلغ: 32,860 جنيه'),
-            Text('الضريبة: 4,600 جنيه'),
-            Text('الإجمالي: 37,460 جنيه',
+            Text('المبلغ: ${data.data!.cost} جنيه'),
+            Text('الضريبة: ${data.data!.vat!.toStringAsFixed(2)} جنيه'),
+            Text('الإجمالي:${data.data!.total!} جنيه',
                 style: TextStyle(
                     color: Colors.green, fontWeight: FontWeight.bold)),
-            Text('طريقة الدفع: اونلاين', style: TextStyle(color: Colors.blue)),
+            Text('طريقة الدفع: ${data.data!.paymentMethod}',
+                style: TextStyle(color: Colors.blue)),
           ],
         ),
       ),
