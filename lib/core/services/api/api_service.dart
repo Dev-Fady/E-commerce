@@ -91,4 +91,10 @@ abstract class ApiService {
   Future<dynamic> getOrders(
     @Header("Authorization") String token,
   );
+
+  @GET("orders/{id}")
+  Future<dynamic> orderDetails(
+    @Header("Authorization") String token,
+    @Path("id") int orderId,
+  );
 }
