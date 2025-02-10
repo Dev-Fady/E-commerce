@@ -80,4 +80,10 @@ abstract class ApiService {
   Future<dynamic> getBanner(
     @Header("Authorization") String token,
   );
+
+  @POST("orders")
+  Future<dynamic> addorder(
+    @Header("Authorization") String token,
+    @Body() Map<String, dynamic> body,
+  );
 }
