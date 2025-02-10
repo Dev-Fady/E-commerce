@@ -44,6 +44,10 @@ class CacheHelper {
     return sharedPreferences.containsKey(key);
   }
 
+  Set<String> getAllKeys() {
+    return sharedPreferences.getKeys();
+  }
+
   Future<bool> clearData({required String key}) async {
     return sharedPreferences.clear();
   }

@@ -22,7 +22,7 @@ class AddOrDeleteCartCubit extends Cubit<AddOrDeleteCartState> {
       token: TokenStorage().getTokenLogin(),
       productId: productId,
     );
-    
+
     result.fold(
       (failure) {
         emit(AddOrDeleteCartFailure(error: failure));
@@ -47,5 +47,15 @@ class AddOrDeleteCartCubit extends Cubit<AddOrDeleteCartState> {
       productCart[productId] = isFavorite ?? false;
     }
     return productCart[productId] ?? false;
+  }
+
+  Future<void> clearCart() async {
+    for (var key in prefs.getAllKeys()) {
+      if (key.startsWith('cart_')) {
+        await prefs.removeData(key: key);
+      }
+    }
+    productCart.clear();
+    log("تم مسح جميع العناصر من السلة");
   }
 }
