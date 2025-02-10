@@ -1,5 +1,6 @@
 import 'package:e_commerce/core/helper_functions/router/router_name.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../../domain/entites/banner_entity.dart';
 
@@ -68,7 +69,7 @@ class ProductCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: EdgeInsets.symmetric(horizontal: 4.w),
               child: Row(
                 children: [
                   Text(
