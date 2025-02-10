@@ -18,6 +18,7 @@ import 'package:e_commerce/features/favorites/presentation/view/favorites_view.d
 import 'package:e_commerce/features/home/presentation/view/home_view.dart';
 import 'package:e_commerce/features/main/presentation/view/main_view.dart';
 import 'package:e_commerce/features/on_boarding/presentation/view/on_boarding_view.dart';
+import 'package:e_commerce/features/orders/presentation/view/orders_screen.dart';
 import 'package:e_commerce/features/product_details/view/product_details_view.dart';
 import 'package:e_commerce/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -167,6 +168,11 @@ GoRouter createRouter(String initialLocation) {
           ),
           child: const SignUpView(),
         ),
+      ),
+      GoRoute(
+        path: RouterName.orders_screen,
+        name: RouterName.orders_screen,
+        builder: (context, state) => OrdersScreen(),
       ),
     ],
   );
