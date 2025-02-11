@@ -94,6 +94,7 @@ flutter:
   assets:
     - assets/images/
     - assets/app_icon.png
+    - assets/on_borading/
     - assets/fonts/
     - .env.dev
     - .env.prod

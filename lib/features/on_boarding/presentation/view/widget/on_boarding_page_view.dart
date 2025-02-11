@@ -1,4 +1,3 @@
-import 'package:e_commerce/core/constants/images.dart';
 import 'package:e_commerce/core/theme/app_text_styles.dart';
 import 'package:e_commerce/features/on_boarding/presentation/view/widget/title_text_page_one.dart';
 import 'package:flutter/material.dart';
@@ -21,9 +20,8 @@ class OnBoardingPageView extends StatelessWidget {
           visible: true,
           title: TitleTextPageOne(),
           subtitle:
-              'اكتشف تجربة تسوق فريدة مع FruitHUB. استكشف مجموعتنا الواسعة من الفواكه الطازجة الممتازة واحصل على أفضل العروض والجودة العالية.',
-          backgroundImage: Assets.imagePageViewItem1BackgroundImage,
-          image: Assets.imagePageViewItem1Image,
+              'كل ما تحتاجه في مكان واحد! تسوّق الفواكه الطازجة، الملابس العصرية، مستلزمات البقالة، والأجهزة الكهربائية بأفضل العروض والتوصيل السريع.',
+          image: 'assets/on_borading/onborading_one.png',
         ),
         PageViewItem(
           visible: false,
@@ -32,9 +30,8 @@ class OnBoardingPageView extends StatelessWidget {
             style: AppTextStyles.heading23Bold,
           ),
           subtitle:
-              'نقدم لك أفضل الفواكه المختارة بعناية. اطلع على التفاصيل والصور والتقييمات لتتأكد من اختيار الفاكهة المثالية',
-          backgroundImage: Assets.imagePageViewItem2BackgroundImage,
-          image: Assets.imagePageViewItem2Image,
+              'تسوّق بسهولة من مجموعة واسعة من المنتجات، بدءًا من الفواكه الطازجة إلى الملابس والأجهزة الكهربائية. اطلع على التفاصيل والتقييمات قبل الشراء!',
+          image: 'assets/on_borading/onborading_two.png',
         )
       ],
     );

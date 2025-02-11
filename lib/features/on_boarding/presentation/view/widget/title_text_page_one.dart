@@ -12,7 +12,7 @@ class TitleTextPageOne extends StatelessWidget {
       TextSpan(
         children: [
           TextSpan(text: 'مرحبًا بك في', style: AppTextStyles.heading23Bold),
-          TextSpan(text: ' Fruit', style: AppTextStyles.heading23Bold),
+          TextSpan(text: ' Store ', style: AppTextStyles.heading23Bold),
           TextSpan(
               text: 'HUB',
               style: AppTextStyles.heading23Bold.copyWith(color: Colors.amber)),
