@@ -97,4 +97,10 @@ abstract class ApiService {
     @Header("Authorization") String token,
     @Path("id") int orderId,
   );
+
+  @POST("products/search")
+  Future<dynamic> productSearch(
+    @Header("Authorization") String token,
+    @Body() Map<String, dynamic> body,
+  );
 }
