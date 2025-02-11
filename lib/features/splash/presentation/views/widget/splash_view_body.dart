@@ -40,7 +40,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
             SvgPicture.asset(Assets.imagePlant),
           ],
         ),
-        SvgPicture.asset(Assets.imageLogo),
+        Image.asset('assets/on_borading/onborading_two.png'),
         SvgPicture.asset(
           Assets.imageSplashBottom,
           fit: BoxFit.fill,
