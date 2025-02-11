@@ -7,8 +7,10 @@ import 'package:e_commerce/core/errors/faliures.dart';
 import 'package:e_commerce/core/services/api/api_service.dart';
 import 'package:e_commerce/features/home/data/model/categories_details_model.dart';
 import 'package:e_commerce/features/home/data/model/categories_model.dart';
+import 'package:e_commerce/features/home/data/model/product_search_model.dart';
 import 'package:e_commerce/features/home/domain/entites/categories_details_entity.dart';
 import 'package:e_commerce/features/home/domain/entites/categories_entity.dart';
+import 'package:e_commerce/features/home/domain/entites/product_search_entity.dart';
 import 'package:e_commerce/features/home/domain/repo/categories_repo.dart';
 
 class CategoriesRepoImpl extends CategoriesRepo {
@@ -47,6 +49,26 @@ class CategoriesRepoImpl extends CategoriesRepo {
       return Right(products);
     } catch (e) {
       log('Exception in getCategoriesDetails: $e');
+      throw Left(CustomException(message: 'حدث خطأ أثنا�� ��لب البيانات.'));
+    }
+  }
+
+  @override
+  Future<Either<Faliure, ProductSearchEntity>> productSearch(
+      {required String token, required String nameSearch}) async {
+    try {
+      final data = await apiService.productSearch(
+        token,
+        {
+          "text": nameSearch,
+        },
+      );
+      log('API Response: $data');
+      final resultModel = ProductSearchModel.fromJson(data);
+      final resultentity = resultModel.toEntity();
+      return Right(resultentity);
+    } catch (e) {
+      log('Exception in product Search: $e');
       throw Left(CustomException(message: 'حدث خطأ أثنا�� ��لب البيانات.'));
     }
   }

@@ -15,6 +15,7 @@ class SearchTextField extends StatelessWidget {
       this.backgroundColor,
       this.controller,
       this.keyboardType,
+      this.onSubmitted,
       this.prefixIcon});
   final EdgeInsetsGeometry? contentPadding;
   final InputBorder? focusedBorder;
@@ -27,12 +28,14 @@ class SearchTextField extends StatelessWidget {
   final Color? backgroundColor;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
+  final Function(String)? onSubmitted;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
       keyboardType: keyboardType,
+      onSubmitted: onSubmitted,
       decoration: InputDecoration(
         isDense: true,
         contentPadding: contentPadding ??
