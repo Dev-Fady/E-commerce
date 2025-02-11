@@ -14,6 +14,8 @@ import 'package:e_commerce/features/favorites/data/repo/favorites_repo_impl.dart
 import 'package:e_commerce/features/favorites/domain/entites/get_favorites_entity.dart';
 import 'package:e_commerce/features/favorites/presentation/manger/cubit/add_or_delete_favorites_cubit.dart';
 import 'package:e_commerce/features/favorites/presentation/view/favorites_view.dart';
+import 'package:e_commerce/features/home/domain/entites/product_search_entity.dart';
+import 'package:e_commerce/features/home/presentation/view/details_view/search_product_details_view.dart';
 // import 'package:e_commerce/features/home/domain/entites/categories_entity.dart';
 import 'package:e_commerce/features/home/presentation/view/home_view.dart';
 import 'package:e_commerce/features/main/presentation/view/main_view.dart';
@@ -59,6 +61,32 @@ GoRouter createRouter(String initialLocation) {
               ),
             ],
             child: BannerProductDetailsView(data: product),
+          );
+        },
+      ),
+      GoRoute(
+        path: RouterName.search_product_details_view,
+        name: RouterName.search_product_details_view,
+        builder: (context, state) {
+          final product = state.extra as DataItemEntity;
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => AddOrDeleteFavoritesCubit(
+                  favoritesRepo: FavoritesRepoImpl(
+                    apiService: getIt<ApiService>(),
+                  ),
+                ),
+              ),
+              BlocProvider(
+                create: (context) => AddOrDeleteCartCubit(
+                  cartRepo: CartRepoImpl(
+                    apiService: getIt<ApiService>(),
+                  ),
+                ),
+              ),
+            ],
+            child: SearchProductDetailsView(data: product),
           );
         },
       ),
