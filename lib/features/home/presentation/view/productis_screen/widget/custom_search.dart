@@ -1,8 +1,8 @@
 import 'package:e_commerce/core/constants/images.dart';
+import 'package:e_commerce/features/home/presentation/view/productis_screen/widget/product_search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../../../../../core/widget/search_text_field.dart';
 
 class CustomSearch extends StatelessWidget {
@@ -29,7 +29,19 @@ class CustomSearch extends StatelessWidget {
         prefixIcon: SizedBox(
             width: 24.w,
             child: Center(child: SvgPicture.asset(Assets.imageSearchIcon))),
+        onSubmitted: (query) {
+          if (query.isNotEmpty) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProductSearchPage(searchQuery: query),
+              ),
+            );
+          }
+        },
       ),
     );
   }
 }
+
+
