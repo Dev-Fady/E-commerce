@@ -13,4 +13,12 @@ class Security {
   static String get Cli_token {
     return dotenv.env['FIREBASE_CLI_TOKEN'] ?? '';
   }
+
+  static String get PaypalClientId {
+    return dotenv.env['PAYPAL_CLIENT_ID'] ?? '';
+  }
+
+  static String get PaypalSecretKey {
+    return dotenv.env['PAYPAL_SECRET_KEY'] ?? '';
+  }
 }

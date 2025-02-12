@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:e_commerce/core/helper_functions/security.dart';
 import 'package:e_commerce/core/widget/custom_snackbar.dart';
 import 'package:e_commerce/features/cart/domain/entites/get_carts_entity.dart';
 import 'package:e_commerce/features/orders/presentation/manger/cubit/add_order_cubit.dart';
@@ -33,14 +34,15 @@ class CartViewBottonNavigationBar extends StatelessWidget {
             message: state.addOrder.message!,
             type: ContentType.success,
           );
+          log("PAYPAL_CLIENT_ID: ${Security.PaypalClientId}");
+          log("PAYPAL_SECRET_KEY: ${Security.PaypalSecretKey}");
+          log("PAYPAL_: ${Security.Cli_token}");
           log("total: ${state.addOrder.data!.total.toString()},");
           Navigator.of(context).push(MaterialPageRoute(
             builder: (BuildContext context) => PaypalCheckoutView(
               sandboxMode: true,
-              clientId:
-                  'AfoICOnj-P3eVLsifUZ0VSa62QuoLJXYh73eOxeun8Blyzb20M8MdnTaDThKgG2pYUyZYGmIMy2kOShN',
-              secretKey:
-                  "ECbKM7Hb4ioF2pC45n64I-q3CHEK1TNmqubhkl-oj1vILYQY6SwjPO67pId_Ea-XatWVeAGs9SJHJTod",
+              clientId: Security.PaypalClientId,
+              secretKey: Security.PaypalSecretKey,
               transactions: [
                 {
                   "amount": {
