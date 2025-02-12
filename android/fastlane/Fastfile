@@ -14,11 +14,10 @@ platform :android do
         android_artifact_type: "APK",
         # in build => app => outputs => flutter-apk => app-production-release.apk 
         android_artifact_path: "../build/app/outputs/flutter-apk/app-prod-release.apk",
-        # tester email 
-        testers: "fady46t45f@gmail.com",
+        # tester emails 
+        testers: "fady46t45f@gmail.com,fadymobiledev@gmail.com",
         # constants
         release_notes: "Testing something with GitHub Actions, trying to push directly from master branch",
-  )
+    )
   end
 end
-
