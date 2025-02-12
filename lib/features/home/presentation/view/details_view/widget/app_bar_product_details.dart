@@ -12,7 +12,7 @@ class AppBarProductDetails extends StatelessWidget
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0,
-      title: const Text('Sneaker Shop', style: TextStyle(color: Colors.black)),
+      title: const Text('تفاصيل المنتج', style: TextStyle(color: Colors.black)),
       centerTitle: true,
       actions: [
         IconButton(

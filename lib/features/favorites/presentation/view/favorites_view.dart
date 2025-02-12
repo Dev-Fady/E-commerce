@@ -31,7 +31,7 @@ class _FavoritesViewState extends ConsumerState<FavoritesView> {
       backgroundColor: Color(0xffF7F7F9),
       extendBody: true,
       appBar: AppBar(
-        title: const Text("Favorites"),
+        title: const Text("المفضلة"),
         centerTitle: true,
       ),
       body: widget.data.isEmpty
